@@ -1,7 +1,7 @@
 ---
 change_id: events-schema-and-rls
 title: Schemat households + events i polityki RLS izolujące dane per household
-status: implementing
+status: done
 created: 2026-06-10
 updated: 2026-06-10
 archived_at: null
