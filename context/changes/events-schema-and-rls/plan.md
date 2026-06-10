@@ -253,29 +253,29 @@ Niska skala (`target_scale: small` w PRD). Polityki RLS używają subquery `sele
 
 #### Automated
 
-- [x] 1.1 Migracja aplikuje się czysto: `npx supabase db reset` kończy z exit code 0
-- [x] 1.2 Blok ASSERT w migracji nie wyrzuca błędu (jeśli RLS przecieka, `db reset` failuje)
-- [x] 1.3 Lint przechodzi bez nowych ostrzeżeń: `npm run lint`
-- [x] 1.4 Build wciąż przechodzi: `npm run build`
+- [x] 1.1 Migracja aplikuje się czysto: `npx supabase db reset` kończy z exit code 0 — 7488e4a
+- [x] 1.2 Blok ASSERT w migracji nie wyrzuca błędu (jeśli RLS przecieka, `db reset` failuje) — 7488e4a
+- [x] 1.3 Lint przechodzi bez nowych ostrzeżeń: `npm run lint` — 7488e4a
+- [x] 1.4 Build wciąż przechodzi: `npm run build` — 7488e4a
 
 #### Manual
 
-- [ ] 1.5 Po `npx supabase db reset` w Supabase Studio widać 4 nowe tabele: `households`, `household_members`, `household_members_profiles`, `events`
-- [ ] 1.6 W zakładce „Authentication" → „Policies" każda z 4 tabel ma włączone RLS i listę polityk per-operation dla roli `authenticated`
-- [ ] 1.7 Brak rekordów testowych w żadnej tabeli po `db reset`
+- [x] 1.5 Po `npx supabase db reset` w Supabase Studio widać 4 nowe tabele: `households`, `household_members`, `household_members_profiles`, `events` — 7488e4a
+- [x] 1.6 W zakładce „Authentication" → „Policies" każda z 4 tabel ma włączone RLS i listę polityk per-operation dla roli `authenticated` — 7488e4a
+- [x] 1.7 Brak rekordów testowych w żadnej tabeli po `db reset` — 7488e4a
 
 ### Phase 2: Wiring TypeScript — `src/types.ts`
 
 #### Automated
 
-- [ ] 2.1 TypeScript przechodzi bez błędów: `npm run lint`
-- [ ] 2.2 Build przechodzi: `npm run build`
-- [ ] 2.3 `src/types.ts` istnieje i ma 6 eksportów: `Household`, `HouseholdMember`, `HouseholdMemberProfile`, `Event`, `NewEvent`, `EventUpdate`
+- [x] 2.1 TypeScript przechodzi bez błędów: `npm run lint`
+- [x] 2.2 Build przechodzi: `npm run build`
+- [x] 2.3 `src/types.ts` istnieje i ma 6 eksportów: `Household`, `HouseholdMember`, `HouseholdMemberProfile`, `Event`, `NewEvent`, `EventUpdate`
 
 #### Manual
 
-- [ ] 2.4 Otwarcie pliku w edytorze pokazuje czysty Intellisense bez squigglies
-- [ ] 2.5 Próbny import w dev: `import type { Event } from "@/types";` rozpoznaje typ
+- [x] 2.4 Otwarcie pliku w edytorze pokazuje czysty Intellisense bez squigglies
+- [x] 2.5 Próbny import w dev: `import type { Event } from "@/types";` rozpoznaje typ
 
 ### Phase 3: Weryfikacja end-to-end z UI rejestracji
 
