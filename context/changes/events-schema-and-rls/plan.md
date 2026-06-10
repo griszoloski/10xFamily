@@ -281,10 +281,10 @@ Niska skala (`target_scale: small` w PRD). Polityki RLS używają subquery `sele
 
 #### Manual
 
-- [x] 3.1 `npm run dev` startuje czysto; `npx supabase start` ma running stack
-- [x] 3.2 Rejestracja przez `/auth/signup` pierwszego usera przechodzi bez błędu
-- [x] 3.3 Studio: po rejestracji Alice — 1 household, 1 household_member z user_id Alice, 1 profile `display_name = 'alice'`
-- [x] 3.4 Rejestracja drugiego usera (Bob) — 2 households, 2 profiles (alice, bob), każde w swoim household
-- [x] 3.5 Studio SQL z JWT Alice: `select * from household_members_profiles` zwraca tylko Alice; analogicznie Bob — brak wycieków
-- [x] 3.6 Wstawienie eventu w Studio z JWT Alice → Alice widzi, Bob nie widzi
-- [x] 3.7 `git status` pokazuje tylko 2 nowe/zmodyfikowane pliki: `supabase/migrations/<…>.sql` i `src/types.ts`
+- [x] 3.1 `npm run dev` startuje czysto; `npx supabase start` ma running stack — 1c0ef7c
+- [x] 3.2 Rejestracja przez `/auth/signup` pierwszego usera przechodzi bez błędu — 1c0ef7c
+- [x] 3.3 Studio: po rejestracji Alice — 1 household, 1 household_member z user_id Alice, 1 profile `display_name = 'alice'` — 1c0ef7c
+- [x] 3.4 Rejestracja drugiego usera (Bob) — 2 households, 2 profiles (alice, bob), każde w swoim household — 1c0ef7c
+- [x] 3.5 Studio SQL z JWT Alice: `select * from household_members_profiles` zwraca tylko Alice; analogicznie Bob — brak wycieków — 1c0ef7c
+- [x] 3.6 Wstawienie eventu w Studio z JWT Alice → Alice widzi, Bob nie widzi — 1c0ef7c
+- [x] 3.7 `git status` pokazuje tylko 2 nowe/zmodyfikowane pliki: `supabase/migrations/<…>.sql` i `src/types.ts` — 1c0ef7c
