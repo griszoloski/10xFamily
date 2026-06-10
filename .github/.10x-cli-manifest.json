@@ -1,9 +1,9 @@
 {
   "package": "@przeprogramowani/10x-cli",
-  "version": "1.6.1",
+  "version": "1.4.0",
   "manifestVersion": 2,
-  "lastApplied": "2026-05-27T07:03:16.297Z",
-  "lessonId": "m1l5",
+  "lastApplied": "2026-06-10T08:06:54.936Z",
+  "lessonId": "m2l2",
   "course": "10xdevs3",
   "tool": "copilot",
   "files": {
@@ -79,9 +79,46 @@
           "references/agent-friendly-criteria.md",
           "SKILL.md"
         ]
+      },
+      "10x-roadmap": {
+        "files": [
+          "SKILL.md"
+        ]
+      },
+      "10x-new": {
+        "files": [
+          "SKILL.md"
+        ]
+      },
+      "10x-plan": {
+        "files": [
+          "references/progress-format.md",
+          "SKILL.md"
+        ]
+      },
+      "10x-plan-review": {
+        "files": [
+          "SKILL.md"
+        ]
+      },
+      "10x-implement": {
+        "files": [
+          "SKILL.md"
+        ]
+      },
+      "10x-archive": {
+        "files": [
+          "SKILL.md"
+        ]
       }
     },
-    "prompts": [],
+    "prompts": [
+      "skill-explainer.md",
+      "m1l5-1-plan-integration.md",
+      "m1l5-2-constrain-approach.md",
+      "m1l5-3-extend-prerequisites.md",
+      "m1l5-4-store-plan.md"
+    ],
     "configs": []
   }
 }

@@ -150,12 +150,12 @@ Triggered when the target file already exists. The default is a **surgical edit*
    Keep this classification as a short table you can show the user. Cite `path:line` (in the existing AGENTS.md) for every UPDATE/REMOVE entry, and cite the source-of-truth path (e.g. `package.json:42`) for every UPDATE/MISSING entry.
 
 5. **Confirm scope before editing.** Use the host's interactive-question tool once (see "Interactive prompts — host-agnostic" above) with these options:
-   - **Apply the proposed updates** — execute the UPDATE/REMOVE/MISSING list as targeted edit operations; KEEP lines are not touched.
+   - **Apply the proposed updates** — execute the UPDATE/REMOVE/MISSING list as targeted file edit operations; KEEP lines are not touched.
    - **Show me the change list first** — print the classification table to chat, no edits, then ask again.
    - **Full regenerate** — discard the existing file and run the Create path. Use only when the existing file is mostly stale or the user explicitly wants a clean slate.
    - **Cancel** — no changes.
 
-6. **Edit surgically.** For the "Apply" choice, prefer multiple small edit operations (one per UPDATE/REMOVE/MISSING entry) over a single file write rewrite. This preserves authorial voice in KEEP sections and produces a reviewable diff. If section ordering violates the "critical rules first" guard from the Quality guards and the user approved updates, you may move whole sections — but only sections, never re-author rule wording silently.
+6. **Edit surgically.** For the "Apply" choice, prefer multiple small file edit operations (one per UPDATE/REMOVE/MISSING entry) over a single file write rewrite. This preserves authorial voice in KEEP sections and produces a reviewable diff. If section ordering violates the "critical rules first" guard from the Quality guards and the user approved updates, you may move whole sections — but only sections, never re-author rule wording silently.
 
 7. **Re-run the Quality guards** on the updated file. The same five gates apply. If a guard now fails because of the update (e.g. body grew past 400 words after MISSING additions), trim KEEP content that has become low-leverage rather than dropping the new MISSING content.
 
@@ -207,7 +207,7 @@ Do not propose follow-ups unless the user asks.
 
 - **No `README.md` and no manifest detected.** Stop and tell the user the repo looks empty or unfamiliar; ask for a one-paragraph project description before drafting.
 - **Monorepo with per-package READMEs.** Write a root `AGENTS.md` that lists packages and `@`-references each package's README, rather than duplicating per-package detail. Suggest nested `packages/<name>/AGENTS.md` for any package with rules that materially differ.
-- **Existing rich `the project's AI configuration file (AGENTS.md)` in the repo.** Treat it as authoritative source material. The new `AGENTS.md` should be a tighter, agent-tool-agnostic distillation that points back to `@AGENTS.md` for depth, not a verbatim copy.
+- **Existing rich `the project's AI configuration file (AGENTS.md)` in the repo.** Treat it as authoritative source material. The new `AGENTS.md` should be a tighter, agent-tool-agnostic distillation that points back to `@the project's AI configuration file (AGENTS.md)` for depth, not a verbatim copy.
 - **Existing `AGENTS.md` was edited by hand after its last commit.** `git diff HEAD -- <path>` will show uncommitted changes. Read those changes first and treat them as KEEP unless they directly contradict a CI-enforced rule — the user is mid-edit and you must not clobber in-flight work.
 - **`LAST_TOUCH` is the initial commit of the repo.** Diff range becomes `LAST_TOUCH..HEAD` with no useful signal. Fall back to inspecting current repo state vs. the file's claims, line by line, without the git-diff shortcut.
 - **File exists but is empty or a stub.** Skip the Update path — run the Create path and overwrite, since there is no authorial content to preserve.

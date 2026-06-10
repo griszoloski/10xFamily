@@ -154,7 +154,7 @@ Populate every required frontmatter field per the schema:
 - `project` — extract from input frontmatter `project:` if present; otherwise from a Title heading (`# <Project>`); otherwise `# TODO: project — see Open Questions`.
 - `version` — `1` for the first PRD this skill writes. The collision step (Step 4) bumps this if the user picks a versioned save.
 - `status` — `draft`. Never promote to `reviewed`/`locked`; that's a downstream decision.
-- `created` — today's date in `YYYY-MM-DD` (use `date +%Y-%m-%d` in a shell).
+- `created` — today's date in `YYYY-MM-DD` (use a shell command like `date +%Y-%m-%d`).
 - `context_type` — `greenfield` or `brownfield` (from Step 1.5).
 - `product_type` — pull from input if available; otherwise `# TODO: product_type — see Open Questions` (and add an Open Question entry).
 - `target_scale`, `timeline_budget` — same rule. If the input has the field, copy it verbatim; if not, emit `# TODO: <field> — see Open Questions` and add a matching Open Question. For brownfield, `timeline_budget` uses `delivery_weeks` instead of `mvp_weeks`.
@@ -208,7 +208,7 @@ For each section:
 - **If the input has partial content** — transcribe what's there, then close with `# TODO: <what's missing> — see Open Questions` inside the section, and add a matching numbered entry under `## Open Questions`.
 - **If the input has no matching content** — emit just the heading plus `# TODO: <section name> — see Open Questions`, and add a matching numbered entry under `## Open Questions`.
 
-If shape-notes.md carried Socrates blockquotes under FRs, preserve them verbatim — they're load-bearing for downstream review.
+If `/10x-shape` recorded Socrates blockquotes under FRs, preserve them verbatim — they're load-bearing for downstream review.
 
 If shape-notes.md carried a `## Quality cross-check` block (from Step 7 of `/10x-shape`), mirror each gap into `## Open Questions` as a numbered entry naming the missing element and its consequence.
 
