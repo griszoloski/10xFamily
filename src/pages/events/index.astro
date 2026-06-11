@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase";
 import { listEvents } from "@/lib/services/events";
 
 const supabase = createClient(Astro.request.headers, Astro.cookies);
-const events = supabase ? await listEvents(supabase) : [];
+const events = supabase ? await listEvents(supabase).catch(() => []) : [];
 const successMsg = Astro.url.searchParams.get("success") === "1";
 ---
 
@@ -57,7 +57,11 @@ const successMsg = Astro.url.searchParams.get("success") === "1";
                     <span>Osoba: {event.subject.display_name}</span>
                     <span>Czas trwania: {event.duration_minutes} min</span>
                     {event.location && <span>Lokalizacja: {event.location}</span>}
-                    {event.car_needed && <span>Auto: {event.driver ? event.driver.display_name : "potrzebne"}</span>}
+                    {event.car_needed && (
+                      <span>
+                        Auto: {event.driver ? event.driver.display_name : "potrzebne"}
+                      </span>
+                    )}
                   </div>
                 </li>
               );
@@ -67,7 +71,9 @@ const successMsg = Astro.url.searchParams.get("success") === "1";
       }
 
       <div class="mt-6">
-        <a href="/dashboard" class="text-sm text-blue-100/60 hover:text-blue-100/80"> ← Wróć do dashboardu </a>
+        <a href="/dashboard" class="text-sm text-blue-100/60 hover:text-blue-100/80">
+          ← Wróć do dashboardu
+        </a>
       </div>
     </div>
   </div>
