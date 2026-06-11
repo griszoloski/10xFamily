@@ -8,7 +8,7 @@ const newEventSchema = z.object({
   subject_id: z.uuid(),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   time: z.string().regex(/^\d{2}:\d{2}$/),
-  duration_minutes: z.coerce.number().int().min(1).max(1440),
+  duration_minutes: z.coerce.number().int().min(10).max(1440),
   location: z.string().max(300).optional(),
   notes: z.string().max(2000).optional(),
   car_needed: z.preprocess((v) => v === "on" || v === "true" || v === true, z.boolean()).default(false),

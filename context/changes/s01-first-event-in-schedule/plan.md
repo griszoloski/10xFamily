@@ -324,31 +324,31 @@ Brak migracji w S-01 — schemat z F-01 jest kompletny dla tego slice'a.
 
 #### Automated
 
-- [x] 2.1 `src/pages/events/index.astro` istnieje
-- [x] 2.2 Lint przechodzi: `npm run lint`
-- [x] 2.3 Build przechodzi: `npm run build`
+- [x] 2.1 `src/pages/events/index.astro` istnieje — 390bd93
+- [x] 2.2 Lint przechodzi: `npm run lint` — 390bd93
+- [x] 2.3 Build przechodzi: `npm run build` — 390bd93
 
 #### Manual
 
-- [x] 2.4 `/events` jako zalogowany → strona ładuje się z listą lub komunikatem pustym
-- [x] 2.5 `/events` jako wylogowany → redirect na `/auth/signin`
-- [x] 2.6 Event wstawiony przez Studio → widoczny na liście z `display_name` osoby
-- [x] 2.7 Layout nie złamany przy 360px
+- [x] 2.4 `/events` jako zalogowany → strona ładuje się z listą lub komunikatem pustym — 390bd93
+- [x] 2.5 `/events` jako wylogowany → redirect na `/auth/signin` — 390bd93
+- [x] 2.6 Event wstawiony przez Studio → widoczny na liście z `display_name` osoby — 390bd93
+- [x] 2.7 Layout nie złamany przy 360px — 390bd93
 
 ### Phase 3: Formularz /events/new + integracja dashboard
 
 #### Automated
 
-- [ ] 3.1 `src/components/events/EventForm.tsx` istnieje
-- [ ] 3.2 `src/pages/events/new.astro` istnieje
-- [ ] 3.3 Lint przechodzi: `npm run lint`
-- [ ] 3.4 Build przechodzi: `npm run build`
+- [x] 3.1 `src/components/events/EventForm.tsx` istnieje
+- [x] 3.2 `src/pages/events/new.astro` istnieje
+- [x] 3.3 Lint przechodzi: `npm run lint`
+- [x] 3.4 Build przechodzi: `npm run build`
 
 #### Manual
 
-- [ ] 3.5 Pełny flow: dashboard → lista → formularz → submit → lista z nowym eventem
-- [ ] 3.6 Dropdown „Osoba" zawiera profile z DB
-- [ ] 3.7 Checkbox „auto potrzebne" toggle — dropdown „Kto jedzie" pokazuje/ukrywa się
-- [ ] 3.8 HTML5 `required` blokuje submit przy pustym tytule
-- [ ] 3.9 Błąd server-side widoczny na formularzu przez `?error=`
-- [ ] 3.10 Layout formularza czytelny na 360px
+- [x] 3.5 Pełny flow: dashboard → lista → formularz → submit → lista z nowym eventem
+- [x] 3.6 Dropdown „Osoba" zawiera profile z DB
+- [x] 3.7 Checkbox „auto potrzebne" toggle — dropdown „Kto jedzie" pokazuje/ukrywa się
+- [x] 3.8 HTML5 `required` blokuje submit przy pustym tytule
+- [x] 3.9 Błąd server-side widoczny na formularzu przez `?error=`
+- [x] 3.10 Layout formularza czytelny na 360px

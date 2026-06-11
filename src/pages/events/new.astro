@@ -1,0 +1,31 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { createClient } from "@/lib/supabase";
+import EventForm from "@/components/events/EventForm";
+
+const supabase = createClient(Astro.request.headers, Astro.cookies);
+
+const profiles = supabase
+  ? ((await supabase.from("household_members_profiles").select("id, display_name, kind").order("display_name")).data ??
+    [])
+  : [];
+
+const error = Astro.url.searchParams.get("error");
+---
+
+<Layout title="Dodaj wydarzenie">
+  <div class="bg-cosmic min-h-screen p-4">
+    <div class="mx-auto max-w-lg">
+      <div class="mb-6 flex items-center justify-between">
+        <h1 class="bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-2xl font-bold text-transparent">
+          Dodaj wydarzenie
+        </h1>
+        <a href="/events" class="text-sm text-blue-100/60 hover:text-blue-100/80"> ← Lista </a>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur-xl">
+        <EventForm profiles={profiles} error={error} client:load />
+      </div>
+    </div>
+  </div>
+</Layout>
