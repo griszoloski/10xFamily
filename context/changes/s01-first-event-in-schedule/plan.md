@@ -310,30 +310,30 @@ Brak migracji w S-01 — schemat z F-01 jest kompletny dla tego slice'a.
 
 #### Automated
 
-- [x] 1.1 `src/lib/services/events.ts` istnieje i eksportuje `getHouseholdId`, `createEvent`, `listEvents`, `EventWithProfiles`
-- [x] 1.2 `src/pages/api/events/index.ts` istnieje i eksportuje `POST`
-- [x] 1.3 Lint przechodzi: `npm run lint`
-- [x] 1.4 Build przechodzi: `npm run build`
+- [x] 1.1 `src/lib/services/events.ts` istnieje i eksportuje `getHouseholdId`, `createEvent`, `listEvents`, `EventWithProfiles` — 5d91255
+- [x] 1.2 `src/pages/api/events/index.ts` istnieje i eksportuje `POST` — 5d91255
+- [x] 1.3 Lint przechodzi: `npm run lint` — 5d91255
+- [x] 1.4 Build przechodzi: `npm run build` — 5d91255
 
 #### Manual
 
-- [x] 1.5 POST na `/api/events` z poprawnym formData → event zapisany w Supabase Studio
-- [x] 1.6 POST z brakującym `title` → redirect na `/events/new?error=...`
+- [x] 1.5 POST na `/api/events` z poprawnym formData → event zapisany w Supabase Studio — 5d91255
+- [x] 1.6 POST z brakującym `title` → redirect na `/events/new?error=...` — 5d91255
 
 ### Phase 2: Strona listy /events
 
 #### Automated
 
-- [ ] 2.1 `src/pages/events/index.astro` istnieje
-- [ ] 2.2 Lint przechodzi: `npm run lint`
-- [ ] 2.3 Build przechodzi: `npm run build`
+- [x] 2.1 `src/pages/events/index.astro` istnieje
+- [x] 2.2 Lint przechodzi: `npm run lint`
+- [x] 2.3 Build przechodzi: `npm run build`
 
 #### Manual
 
-- [ ] 2.4 `/events` jako zalogowany → strona ładuje się z listą lub komunikatem pustym
-- [ ] 2.5 `/events` jako wylogowany → redirect na `/auth/signin`
-- [ ] 2.6 Event wstawiony przez Studio → widoczny na liście z `display_name` osoby
-- [ ] 2.7 Layout nie złamany przy 360px
+- [x] 2.4 `/events` jako zalogowany → strona ładuje się z listą lub komunikatem pustym
+- [x] 2.5 `/events` jako wylogowany → redirect na `/auth/signin`
+- [x] 2.6 Event wstawiony przez Studio → widoczny na liście z `display_name` osoby
+- [x] 2.7 Layout nie złamany przy 360px
 
 ### Phase 3: Formularz /events/new + integracja dashboard
 
