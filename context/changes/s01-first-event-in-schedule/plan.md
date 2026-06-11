@@ -339,16 +339,16 @@ Brak migracji w S-01 — schemat z F-01 jest kompletny dla tego slice'a.
 
 #### Automated
 
-- [x] 3.1 `src/components/events/EventForm.tsx` istnieje
-- [x] 3.2 `src/pages/events/new.astro` istnieje
-- [x] 3.3 Lint przechodzi: `npm run lint`
-- [x] 3.4 Build przechodzi: `npm run build`
+- [x] 3.1 `src/components/events/EventForm.tsx` istnieje — 2b63bdf
+- [x] 3.2 `src/pages/events/new.astro` istnieje — 2b63bdf
+- [x] 3.3 Lint przechodzi: `npm run lint` — 2b63bdf
+- [x] 3.4 Build przechodzi: `npm run build` — 2b63bdf
 
 #### Manual
 
-- [x] 3.5 Pełny flow: dashboard → lista → formularz → submit → lista z nowym eventem
-- [x] 3.6 Dropdown „Osoba" zawiera profile z DB
-- [x] 3.7 Checkbox „auto potrzebne" toggle — dropdown „Kto jedzie" pokazuje/ukrywa się
-- [x] 3.8 HTML5 `required` blokuje submit przy pustym tytule
-- [x] 3.9 Błąd server-side widoczny na formularzu przez `?error=`
-- [x] 3.10 Layout formularza czytelny na 360px
+- [x] 3.5 Pełny flow: dashboard → lista → formularz → submit → lista z nowym eventem — 2b63bdf
+- [x] 3.6 Dropdown „Osoba” zawiera profile z DB — 2b63bdf
+- [x] 3.7 Checkbox „auto potrzebne” toggle — dropdown „Kto jedzie” pokazuje/ukrywa się — 2b63bdf
+- [x] 3.8 HTML5 `required` blokuje submit przy pustym tytule — 2b63bdf
+- [x] 3.9 Błąd server-side widoczny na formularzu przez `?error=` — 2b63bdf
+- [x] 3.10 Layout formularza czytelny na 360px — 2b63bdf
