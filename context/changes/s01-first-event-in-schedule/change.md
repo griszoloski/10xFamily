@@ -1,7 +1,7 @@
 ---
 change_id: s01-first-event-in-schedule
 title: S01 first event in schedule
-status: implemented
+status: impl_reviewed
 created: 2026-06-10
 updated: 2026-06-11
 archived_at: null
