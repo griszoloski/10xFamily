@@ -1,1 +1,1 @@
-select count(*) from auth.users
+select * from auth.users
