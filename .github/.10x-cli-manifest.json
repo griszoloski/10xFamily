@@ -2,8 +2,8 @@
   "package": "@przeprogramowani/10x-cli",
   "version": "1.4.0",
   "manifestVersion": 2,
-  "lastApplied": "2026-06-11T05:58:16.897Z",
-  "lessonId": "m2l3",
+  "lastApplied": "2026-06-18T09:03:00.148Z",
+  "lessonId": "m2l5",
   "course": "10xdevs3",
   "tool": "copilot",
   "files": {
@@ -112,6 +112,16 @@
         ]
       },
       "10x-impl-review": {
+        "files": [
+          "SKILL.md"
+        ]
+      },
+      "10x-frame": {
+        "files": [
+          "SKILL.md"
+        ]
+      },
+      "10x-research": {
         "files": [
           "SKILL.md"
         ]

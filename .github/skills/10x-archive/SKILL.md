@@ -54,7 +54,11 @@ The result is `<change-id>`.
 
 Two pre-flight checks. Either failing blocks the archive.
 
-**1. Uncommitted edits inside the change folder.** Run a bash command to check `git status --porcelain "context/changes/<change-id>/"`.
+**1. Uncommitted edits inside the change folder.** Run a bash command to get the git status:
+
+```bash
+git status --porcelain "context/changes/<change-id>/"
+```
 
 If the output is non-empty, **block** and print:
 
@@ -66,7 +70,11 @@ If the output is non-empty, **block** and print:
 Commit or stash them first, then re-run /10x-archive.
 ```
 
-**2. Pre-existing staged changes anywhere.** The archive commit step (see "Move and stamp" below) bundles whatever is staged at commit time. If the user has unrelated staged changes from earlier work, they'd silently land in the `chore(archive): close ...` commit. Run a bash command to check `git diff --cached --quiet`.
+**2. Pre-existing staged changes anywhere.** The archive commit step (see "Move and stamp" below) bundles whatever is staged at commit time. If the user has unrelated staged changes from earlier work, they'd silently land in the `chore(archive): close ...` commit. Run a bash command to check for staged changes:
+
+```bash
+git diff --cached --quiet
+```
 
 If the exit code is non-zero, **block** and print:
 
@@ -212,5 +220,5 @@ The folder is now read-only by convention. To start a new change: /10x-new <new-
 - Does not run `pnpm test` / `pnpm build` / `pnpm ci:local` as a gate — the gate is lenient warn-only by design.
 - Does not push. The archive commit lands locally; `git push` is the user's call.
 - Does not rewrite the roadmap beyond closing the one matched item. When `context/foundation/roadmap.md` has an item whose `Change ID` equals the archived `<change-id>`, this skill flips only that item's `Status` (table cell + `### <ID>:` body line), appends one `## Done` bullet, and bumps the `updated:` date. It never reorders slices, recomputes the dependency graph, edits other items, or creates a roadmap that doesn't exist. No match (or no roadmap file) → roadmap untouched.
-- Does not write to `context/archive/<...>/` after the move; archived folders are read-only by convention. Other 10x skills (`/10x-research`, `/10x-frame`, `/10x-plan`, `/10x-plan-review`, `/10x-implement`, `/10x-impl-review`, `/10x-tdd`, `/10x-auto-implement`) refuse when a resolved path starts with `context/archive/`.
+- Does not write to `context/archive/<...>/` after the move; archived folders are read-only by convention. Other 10x skills (`/10x-research`, `/10x-frame`, `/10x-plan`, `/10x-plan-review`, `/10x-implement`, `/10x-impl-review`, `/10x-tdd`, `/10x-goal-implement`) refuse when a resolved path starts with `context/archive/`.
 - Does not unarchive. To revisit an archived change, open a new change with `/10x-new` and reference the archived folder for context.
