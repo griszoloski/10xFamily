@@ -84,6 +84,31 @@ export async function listEvents(supabase: SupabaseClient): Promise<EventWithPro
   return data as EventWithProfiles[];
 }
 
+export async function listEventsByDateRange(
+  supabase: SupabaseClient,
+  from: string,
+  to: string,
+): Promise<EventWithProfiles[]> {
+  const { data, error } = await supabase
+    .from("events")
+    .select(
+      `
+      *,
+      subject:household_members_profiles!subject_id(id, display_name, kind),
+      driver:household_members_profiles!driver_id(id, display_name)
+    `,
+    )
+    .gte("starts_at", from)
+    .lte("starts_at", to)
+    .order("starts_at", { ascending: true });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data as EventWithProfiles[];
+}
+
 export async function getEvent(supabase: SupabaseClient, eventId: string): Promise<Event | null> {
   const { data, error } = (await supabase.from("events").select("*").eq("id", eventId).single()) as {
     data: Event | null;
