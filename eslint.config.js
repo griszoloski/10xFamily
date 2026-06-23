@@ -65,6 +65,10 @@ const astroConfig = tseslint.config({
     "astro/no-set-html-directive": "error",
     "astro/no-unused-css-selector": "warn",
     "astro/prefer-class-list-directive": "warn",
+    // @typescript-eslint/no-misused-promises crashes (internal null-assertion failure) when
+    // it encounters `return` statements in Astro frontmatter. Disable checksVoidReturn for
+    // .astro files while keeping the rule active for .ts/.tsx.
+    "@typescript-eslint/no-misused-promises": ["error", { checksVoidReturn: false }],
   },
 });
 

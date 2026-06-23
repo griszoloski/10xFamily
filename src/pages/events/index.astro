@@ -2,10 +2,13 @@
 import Layout from "@/layouts/Layout.astro";
 import { createClient } from "@/lib/supabase";
 import { listEvents } from "@/lib/services/events";
+import DeleteEventButton from "@/components/events/DeleteEventButton";
 
 const supabase = createClient(Astro.request.headers, Astro.cookies);
 const events = supabase ? await listEvents(supabase).catch(() => []) : [];
 const successMsg = Astro.url.searchParams.get("success") === "1";
+const updatedMsg = Astro.url.searchParams.get("updated") === "1";
+const deletedMsg = Astro.url.searchParams.get("deleted") === "1";
 ---
 
 <Layout title="Moje wydarzenia">
@@ -27,6 +30,20 @@ const successMsg = Astro.url.searchParams.get("success") === "1";
         successMsg && (
           <div class="mb-4 rounded-lg border border-green-400/30 bg-green-400/10 px-4 py-3 text-sm text-green-200">
             Wydarzenie zostało dodane!
+          </div>
+        )
+      }
+      {
+        updatedMsg && (
+          <div class="mb-4 rounded-lg border border-blue-400/30 bg-blue-400/10 px-4 py-3 text-sm text-blue-200">
+            Wydarzenie zostało zaktualizowane.
+          </div>
+        )
+      }
+      {
+        deletedMsg && (
+          <div class="mb-4 rounded-lg border border-orange-400/30 bg-orange-400/10 px-4 py-3 text-sm text-orange-200">
+            Wydarzenie zostało usunięte.
           </div>
         )
       }
@@ -57,11 +74,16 @@ const successMsg = Astro.url.searchParams.get("success") === "1";
                     <span>Osoba: {event.subject.display_name}</span>
                     <span>Czas trwania: {event.duration_minutes} min</span>
                     {event.location && <span>Lokalizacja: {event.location}</span>}
-                    {event.car_needed && (
-                      <span>
-                        Auto: {event.driver ? event.driver.display_name : "potrzebne"}
-                      </span>
-                    )}
+                    {event.car_needed && <span>Auto: {event.driver ? event.driver.display_name : "potrzebne"}</span>}
+                  </div>
+                  <div class="mt-3 flex flex-wrap items-center gap-2">
+                    <a
+                      href={`/events/${event.id}/edit`}
+                      class="rounded-lg border border-white/20 bg-white/10 px-3 py-1.5 text-sm text-white transition-colors hover:bg-white/20"
+                    >
+                      Edytuj
+                    </a>
+                    <DeleteEventButton eventId={event.id} client:load />
                   </div>
                 </li>
               );
@@ -71,9 +93,7 @@ const successMsg = Astro.url.searchParams.get("success") === "1";
       }
 
       <div class="mt-6">
-        <a href="/dashboard" class="text-sm text-blue-100/60 hover:text-blue-100/80">
-          ← Wróć do dashboardu
-        </a>
+        <a href="/dashboard" class="text-sm text-blue-100/60 hover:text-blue-100/80"> ← Wróć do dashboardu </a>
       </div>
     </div>
   </div>

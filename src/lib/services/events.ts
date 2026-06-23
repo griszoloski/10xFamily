@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Event, HouseholdMemberProfile, NewEvent } from "@/types";
+import type { Event, EventUpdate, HouseholdMemberProfile, NewEvent } from "@/types";
 
 export interface EventWithProfiles extends Event {
   subject: Pick<HouseholdMemberProfile, "id" | "display_name" | "kind">;
@@ -52,4 +52,43 @@ export async function listEvents(supabase: SupabaseClient): Promise<EventWithPro
   }
 
   return data as EventWithProfiles[];
+}
+
+export async function getEvent(supabase: SupabaseClient, eventId: string): Promise<Event | null> {
+  const { data, error } = (await supabase.from("events").select("*").eq("id", eventId).single()) as {
+    data: Event | null;
+    error: { message: string } | null;
+  };
+
+  if (error || !data) {
+    return null;
+  }
+
+  return data;
+}
+
+export async function updateEvent(supabase: SupabaseClient, eventId: string, update: EventUpdate): Promise<Event> {
+  const payload = {
+    ...update,
+    updated_at: new Date().toISOString(),
+  };
+
+  const { data, error } = (await supabase.from("events").update(payload).eq("id", eventId).select().single()) as {
+    data: Event | null;
+    error: { message: string } | null;
+  };
+
+  if (error || !data) {
+    throw new Error(error?.message ?? "Failed to update event");
+  }
+
+  return data;
+}
+
+export async function deleteEvent(supabase: SupabaseClient, eventId: string): Promise<void> {
+  const { error } = await supabase.from("events").delete().eq("id", eventId);
+
+  if (error) {
+    throw new Error(error.message);
+  }
 }

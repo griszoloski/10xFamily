@@ -1,0 +1,52 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { createClient } from "@/lib/supabase";
+import { getEvent } from "@/lib/services/events";
+import EventForm from "@/components/events/EventForm";
+
+const { id } = Astro.params;
+
+const supabase = createClient(Astro.request.headers, Astro.cookies);
+if (!supabase) {
+  return Astro.redirect("/events");
+}
+
+const event = await getEvent(supabase, id ?? "");
+if (!event) {
+  return Astro.redirect("/events");
+}
+
+const initialValues = {
+  title: event.title,
+  subject_id: event.subject_id,
+  date: event.starts_at.slice(0, 10),
+  time: event.starts_at.slice(11, 16),
+  duration_minutes: event.duration_minutes,
+  location: event.location,
+  notes: event.notes,
+  car_needed: event.car_needed,
+  driver_id: event.driver_id,
+};
+
+const profiles =
+  (await supabase.from("household_members_profiles").select("id, display_name, kind").order("display_name")).data ?? [];
+
+const error = Astro.url.searchParams.get("error");
+---
+
+<Layout title="Edytuj wydarzenie">
+  <div class="bg-cosmic min-h-screen p-4">
+    <div class="mx-auto max-w-lg">
+      <div class="mb-6 flex items-center justify-between">
+        <h1 class="bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-2xl font-bold text-transparent">
+          Edytuj wydarzenie
+        </h1>
+        <a href="/events" class="text-sm text-blue-100/60 hover:text-blue-100/80"> ← Lista </a>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur-xl">
+        <EventForm profiles={profiles} initialValues={initialValues} eventId={event.id} error={error} client:load />
+      </div>
+    </div>
+  </div>
+</Layout>
