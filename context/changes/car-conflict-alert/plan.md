@@ -246,29 +246,29 @@ Brak nowej migracji SQL — schema z `events_car_needed_partial_idx` i `events_h
 
 #### Automated
 
-- [x] 1.1 `npm run lint` przechodzi bez błędów
-- [x] 1.2 `npm run build` przechodzi bez błędów
+- [x] 1.1 `npm run lint` przechodzi bez błędów — 62c804c
+- [x] 1.2 `npm run build` przechodzi bez błędów — 62c804c
 
 #### Manual
 
-- [ ] 1.3 Funkcja dostępna i poprawnie importowana (weryfikacja przez Phase 2)
+- [x] 1.3 Funkcja dostępna i poprawnie importowana (weryfikacja przez Phase 2)
 
 ### Phase 2: Events List — Conflict Banners and Card Indicators
 
 #### Automated
 
-- [ ] 2.1 `npm run lint` przechodzi bez błędów
-- [ ] 2.2 `npm run build` przechodzi bez błędów
+- [x] 2.1 `npm run lint` przechodzi bez błędów
+- [x] 2.2 `npm run build` przechodzi bez błędów
 
 #### Manual
 
-- [ ] 2.3 Dwa car_needed events, ten sam dzień, overlap → baner konfliktu z tytułami, godzinami i osobami
-- [ ] 2.4 Kolidujące karty mają wizualne oznaczenie
-- [ ] 2.5 Dwa car_needed events, ten sam dzień, brak overlap → brak banera
-- [ ] 2.6 Touch point (A.end === B.start) → brak banera
-- [ ] 2.7 Dwa events bez car_needed, overlap → brak banera
-- [ ] 2.8 Wiele par → jeden baner per para
-- [ ] 2.9 `/events?car_conflict=1` ręcznie → widoczny baner nawigacyjny
+- [x] 2.3 Dwa car_needed events, ten sam dzień, overlap → baner konfliktu z tytułami, godzinami i osobami
+- [x] 2.4 Kolidujące karty mają wizualne oznaczenie
+- [x] 2.5 Dwa car_needed events, ten sam dzień, brak overlap → brak banera
+- [x] 2.6 Touch point (A.end === B.start) → brak banera
+- [x] 2.7 Dwa events bez car_needed, overlap → brak banera
+- [x] 2.8 Wiele par → jeden baner per para
+- [x] 2.9 `/events?car_conflict=1` ręcznie → widoczny baner nawigacyjny
 
 ### Phase 3: API Routes — Car Conflict Signal on Save
 
