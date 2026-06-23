@@ -303,10 +303,10 @@ No migration required. `events_update_own` and `events_delete_own` RLS policies 
 
 #### Manual
 
-- [ ] 1.6 `updated_at` changes on UPDATE verified in Supabase Studio
-- [ ] 1.7 POST update endpoint works end-to-end via formData
-- [ ] 1.8 POST delete endpoint removes row from Studio
-- [ ] 1.9 Cross-household update blocked by RLS
+- [x] 1.6 `updated_at` changes on UPDATE verified in Supabase Studio
+- [x] 1.7 POST update endpoint works end-to-end via formData
+- [x] 1.8 POST delete endpoint removes row from Studio
+- [x] 1.9 Cross-household update blocked by RLS
 
 ### Phase 2: Edit form extension + edit page
 
@@ -318,12 +318,12 @@ No migration required. `events_update_own` and `events_delete_own` RLS policies 
 
 #### Manual
 
-- [ ] 2.4 Edit page loads with all fields pre-filled
-- [ ] 2.5 `car_needed` state initialized correctly from existing event
-- [ ] 2.6 Edit submit succeeds → `/events?updated=1`
-- [ ] 2.7 Validation error redirects back with `?error=` message
-- [ ] 2.8 Cross-household event URL redirects to `/events`
-- [ ] 2.9 Unauthenticated access redirects to `/auth/signin`
+- [x] 2.4 Edit page loads with all fields pre-filled
+- [x] 2.5 `car_needed` state initialized correctly from existing event
+- [x] 2.6 Edit submit succeeds → `/events?updated=1`
+- [x] 2.7 Validation error redirects back with `?error=` message
+- [x] 2.8 Cross-household event URL redirects to `/events`
+- [x] 2.9 Unauthenticated access redirects to `/auth/signin`
 
 ### Phase 3: List page — edit links, delete island, banners
 
@@ -335,8 +335,8 @@ No migration required. `events_update_own` and `events_delete_own` RLS policies 
 
 #### Manual
 
-- [ ] 3.4 Edit link and Usuń button visible on each event card
-- [ ] 3.5 Two-step confirm strip shows/hides correctly
-- [ ] 3.6 Delete flow completes → `/events?deleted=1` banner
-- [ ] 3.7 Update flow completes → `/events?updated=1` banner
-- [ ] 3.8 Layout intact at 360px
+- [x] 3.4 Edit link and Usuń button visible on each event card
+- [x] 3.5 Two-step confirm strip shows/hides correctly
+- [x] 3.6 Delete flow completes → `/events?deleted=1` banner
+- [x] 3.7 Update flow completes → `/events?updated=1` banner
+- [x] 3.8 Layout intact at 360px
