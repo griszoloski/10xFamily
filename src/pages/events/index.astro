@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import { createClient } from "@/lib/supabase";
 import { listEvents, detectCarConflicts } from "@/lib/services/events";
 import DeleteEventButton from "@/components/events/DeleteEventButton";
+import { cn } from "@/lib/utils";
 
 const supabase = createClient(Astro.request.headers, Astro.cookies);
 const events = supabase ? await listEvents(supabase).catch(() => []) : [];
@@ -12,7 +13,6 @@ const conflictingIds = new Set(conflictPairs.flatMap((p) => [p.a.id, p.b.id]));
 const successMsg = Astro.url.searchParams.get("success") === "1";
 const updatedMsg = Astro.url.searchParams.get("updated") === "1";
 const deletedMsg = Astro.url.searchParams.get("deleted") === "1";
-const carConflictMsg = Astro.url.searchParams.get("car_conflict") === "1";
 ---
 
 <Layout title="Moje wydarzenia">
@@ -52,14 +52,6 @@ const carConflictMsg = Astro.url.searchParams.get("car_conflict") === "1";
         )
       }
       {
-        carConflictMsg && (
-          <div class="mb-4 rounded-lg border border-amber-400/30 bg-amber-400/10 px-4 py-3 text-sm text-amber-200">
-            Zapisano. Sprawdź alerty konfliktu auta poniżej.
-          </div>
-        )
-      }
-
-      {
         conflictPairs.map((pair) => {
           const fmtTime = (s: string) =>
             new Date(s).toLocaleTimeString("pl-PL", { hour: "2-digit", minute: "2-digit" });
@@ -93,7 +85,10 @@ const carConflictMsg = Astro.url.searchParams.get("car_conflict") === "1";
               });
               return (
                 <li
-                  class:list={`rounded-2xl border bg-white/10 p-4 text-white backdrop-blur-xl ${isConflicting ? "border-l-4 border-red-400/50 border-l-red-400" : "border-white/10"}`}
+                  class:list={cn(
+                    "rounded-2xl border bg-white/10 p-4 text-white backdrop-blur-xl",
+                    isConflicting ? "border-l-4 border-red-400/50 border-l-red-400" : "border-white/10",
+                  )}
                 >
                   <div class="flex flex-wrap items-start justify-between gap-2">
                     <h2 class="font-semibold">

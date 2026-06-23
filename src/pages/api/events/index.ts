@@ -51,5 +51,5 @@ export const POST: APIRoute = async (context) => {
     return context.redirect(`/events/new?error=${encodeURIComponent(message)}`);
   }
 
-  return context.redirect(car_needed ? "/events?success=1&car_conflict=1" : "/events?success=1");
+  return context.redirect("/events?success=1");
 };
