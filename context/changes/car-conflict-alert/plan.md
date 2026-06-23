@@ -274,13 +274,13 @@ Brak nowej migracji SQL — schema z `events_car_needed_partial_idx` i `events_h
 
 #### Automated
 
-- [x] 3.1 `npm run lint` przechodzi bez błędów
-- [x] 3.2 `npm run build` przechodzi bez błędów
+- [x] 3.1 `npm run lint` przechodzi bez błędów — 5af5b71
+- [x] 3.2 `npm run build` przechodzi bez błędów — 5af5b71
 
 #### Manual
 
-- [x] 3.3 CREATE car_needed=true → baner nawigacyjny po redirectcie
-- [x] 3.4 CREATE car_needed=false → brak bannera car_conflict
-- [x] 3.5 EDIT → car_needed=true → baner nawigacyjny po redirectcie
-- [x] 3.6 EDIT → car_needed=false → brak bannera car_conflict
-- [x] 3.7 DELETE → żaden nowy baner
+- [x] 3.3 CREATE car_needed=true → baner nawigacyjny po redirectcie — 5af5b71
+- [x] 3.4 CREATE car_needed=false → brak bannera car_conflict — 5af5b71
+- [x] 3.5 EDIT → car_needed=true → baner nawigacyjny po redirectcie — 5af5b71
+- [x] 3.6 EDIT → car_needed=false → brak bannera car_conflict — 5af5b71
+- [x] 3.7 DELETE → żaden nowy baner — 5af5b71

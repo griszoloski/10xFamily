@@ -1,7 +1,7 @@
 ---
 change_id: car-conflict-alert
 title: Car conflict alert for overlapping car-needed events
-status: implementing
+status: implemented
 created: 2026-06-23
 updated: 2026-06-23
 archived_at: null
