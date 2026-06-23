@@ -199,23 +199,23 @@ Brak nowej migracji SQL — schema z `events_household_starts_at_idx` obsługuje
 
 #### Manual
 
-- [x] 1.3 Funkcja dostępna do importu (weryfikacja przez Phase 2)
+- [x] 1.3 Funkcja dostępna do importu (weryfikacja przez Phase 2) — 7e71339
 
 ### Phase 2: Dashboard Page Rebuild
 
 #### Automated
 
-- [x] 2.1 `npm run lint` przechodzi bez błędów
-- [x] 2.2 `npm run build` przechodzi bez błędów
+- [x] 2.1 `npm run lint` przechodzi bez błędów — 7e71339
+- [x] 2.2 `npm run build` przechodzi bez błędów — 7e71339
 
 #### Manual
 
-- [x] 2.3 Strona `/dashboard` ładuje się po zalogowaniu bez błędu
-- [x] 2.4 Sekcja "Dziś" pokazuje dzisiejsze wydarzenia w kolejności chronologicznej
-- [x] 2.5 Brak dzisiejszych wydarzeń → komunikat "Brak wydarzeń na dziś."
-- [x] 2.6 Informacja o aucie i kierowcy widoczna na kartach gdy car_needed=true
-- [x] 2.7 Sekcja "Najbliższe 7 dni" grupuje wydarzenia po dniach
-- [x] 2.8 Conflict banery pojawiają się dla par z car_needed + overlap w oknie 7 dni
-- [x] 2.9 Brak banerów gdy brak konfliktów w oknie
-- [x] 2.10 Layout nie przepełnia się na 360 px
-- [x] 2.11 Przycisk Sign out i link "Wszystkie wydarzenia" działają
+- [x] 2.3 Strona `/dashboard` ładuje się po zalogowaniu bez błędu — 7e71339
+- [x] 2.4 Sekcja "Dziś" pokazuje dzisiejsze wydarzenia w kolejności chronologicznej — 7e71339
+- [x] 2.5 Brak dzisiejszych wydarzeń → komunikat "Brak wydarzeń na dziś." — 7e71339
+- [x] 2.6 Informacja o aucie i kierowcy widoczna na kartach gdy car_needed=true — 7e71339
+- [x] 2.7 Sekcja "Najbliższe 7 dni" grupuje wydarzenia po dniach — 7e71339
+- [x] 2.8 Conflict banery pojawiają się dla par z car_needed + overlap w oknie 7 dni — 7e71339
+- [x] 2.9 Brak banerów gdy brak konfliktów w oknie — 7e71339
+- [x] 2.10 Layout nie przepełnia się na 360 px — 7e71339
+- [x] 2.11 Przycisk Sign out i link "Wszystkie wydarzenia" działają — 7e71339

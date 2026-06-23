@@ -1,7 +1,7 @@
 ---
 change_id: today-dashboard
 title: Today Dashboard with events, car ownership, conflict alerts and upcoming view
-status: implementing
+status: implemented
 created: 2026-06-23
 updated: 2026-06-23
 archived_at: null
