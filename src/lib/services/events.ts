@@ -6,6 +6,36 @@ export interface EventWithProfiles extends Event {
   driver: Pick<HouseholdMemberProfile, "id" | "display_name"> | null;
 }
 
+export interface ConflictPair {
+  a: EventWithProfiles;
+  b: EventWithProfiles;
+}
+
+export function detectCarConflicts(events: EventWithProfiles[]): ConflictPair[] {
+  const carEvents = events.filter((e) => e.car_needed);
+  const pairs: ConflictPair[] = [];
+
+  for (let i = 0; i < carEvents.length; i++) {
+    for (let j = i + 1; j < carEvents.length; j++) {
+      const a = carEvents[i];
+      const b = carEvents[j];
+
+      if (a.starts_at.slice(0, 10) !== b.starts_at.slice(0, 10)) continue;
+
+      const aStart = new Date(a.starts_at).getTime();
+      const aEnd = aStart + a.duration_minutes * 60_000;
+      const bStart = new Date(b.starts_at).getTime();
+      const bEnd = bStart + b.duration_minutes * 60_000;
+
+      if (aStart < bEnd && bStart < aEnd) {
+        pairs.push({ a, b });
+      }
+    }
+  }
+
+  return pairs;
+}
+
 export async function getHouseholdId(supabase: SupabaseClient): Promise<string | null> {
   const { data, error } = await supabase.from("household_members").select("household_id").limit(1).single();
 
