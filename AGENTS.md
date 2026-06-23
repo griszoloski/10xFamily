@@ -41,6 +41,13 @@
 
 GitHub Actions on push/PR to `master`: `npm ci` → `astro sync` → `lint` → `build`. See @.github/workflows/ci.yml.
 
+## AI Workflow (Cursor + 10x-cli)
+
+- Skills: `.cursor/skills/<name>/SKILL.md` — fetched via `10x get` / `10x sync` with `--tool cursor`
+- Rules: `.cursor/rules/10x-workflow.mdc` (project workflow), `.cursor/rules/10x-course.mdc` (course content from 10x-cli)
+- Change folders: `context/changes/<change-id>/` — see `.cursor/README.md`
+- Update skills after course updates: `nvm use && npx @przeprogramowani/10x-cli sync --tool cursor`
+
 ## Environment
 
 Node.js v22.14.0 (see @.nvmrc). Copy `.env.example` → `.env` (or `.dev.vars` for Cloudflare local dev). Local Supabase requires Docker: `npx supabase start`.

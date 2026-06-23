@@ -1,0 +1,50 @@
+---
+description: 10xDevs change workflow — skill router, context paths, and Cursor invocation patterns
+alwaysApply: true
+---
+
+# 10x Change Workflow
+
+This repo follows the 10xDevs AI Toolkit. Skills are in `.cursor/skills/`.
+
+When a task matches a skill below, read and follow the full `SKILL.md` for that skill before acting.
+
+## Context paths
+
+- `context/foundation/` — PRD, tech stack, lessons (read-only hand-offs; do not edit without the matching skill)
+- `context/changes/<change-id>/` — active change (`change.md`, `plan.md`, reviews)
+- `context/archive/` — immutable; refuse to modify. Say: "This change is archived. Open a new change with 10x-new instead."
+
+## Skill router
+
+| When | Skill |
+| --- | --- |
+| Scaffold `/context` for the first time | `10x-init` |
+| New product idea → shape notes | `10x-shape` |
+| Shape notes → PRD | `10x-prd` |
+| PRD → roadmap slices | `10x-roadmap` |
+| Pick stack (greenfield) | `10x-tech-stack-selector` |
+| Assess existing stack (brownfield) | `10x-stack-assess` |
+| Scaffold repo after stack pick | `10x-bootstrapper` |
+| Deployment platform research | `10x-infra-research` |
+| Project health audit | `10x-health-check` |
+| Challenge problem framing before planning | `10x-frame` |
+| Deep codebase research | `10x-research` |
+| Start a new change folder | `10x-new` |
+| Write implementation plan | `10x-plan` |
+| Review a plan before coding | `10x-plan-review` |
+| Execute `plan.md` (complex / phased) | `10x-implement` |
+| Review code against plan | `10x-impl-review` |
+| Capture recurring team rule | `10x-lesson` |
+| Archive completed change | `10x-archive` |
+| Generate or refresh `AGENTS.md` | `10x-agents-md` |
+| Review AI rules files | `10x-rule-review` |
+
+## Invocation
+
+Name the skill in chat (e.g. `use 10x-implement`) or attach `@.cursor/skills/<name>/SKILL.md`. For simple, bounded tasks with a clear stop condition, work autonomously toward the stated goal without requiring the full phased `10x-implement` ceremony.
+
+## Parallel work
+
+- One change per worktree or isolated workspace; one fresh agent context per change.
+- Parallelism is capped by review capacity — more agents without review means more unreviewed code.
