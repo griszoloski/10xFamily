@@ -251,36 +251,36 @@ Brak nowej migracji SQL — schema z `events_car_needed_partial_idx` i `events_h
 
 #### Manual
 
-- [x] 1.3 Funkcja dostępna i poprawnie importowana (weryfikacja przez Phase 2)
+- [x] 1.3 Funkcja dostępna i poprawnie importowana (weryfikacja przez Phase 2) — d1eb4a6
 
 ### Phase 2: Events List — Conflict Banners and Card Indicators
 
 #### Automated
 
-- [x] 2.1 `npm run lint` przechodzi bez błędów
-- [x] 2.2 `npm run build` przechodzi bez błędów
+- [x] 2.1 `npm run lint` przechodzi bez błędów — d1eb4a6
+- [x] 2.2 `npm run build` przechodzi bez błędów — d1eb4a6
 
 #### Manual
 
-- [x] 2.3 Dwa car_needed events, ten sam dzień, overlap → baner konfliktu z tytułami, godzinami i osobami
-- [x] 2.4 Kolidujące karty mają wizualne oznaczenie
-- [x] 2.5 Dwa car_needed events, ten sam dzień, brak overlap → brak banera
-- [x] 2.6 Touch point (A.end === B.start) → brak banera
-- [x] 2.7 Dwa events bez car_needed, overlap → brak banera
-- [x] 2.8 Wiele par → jeden baner per para
-- [x] 2.9 `/events?car_conflict=1` ręcznie → widoczny baner nawigacyjny
+- [x] 2.3 Dwa car_needed events, ten sam dzień, overlap → baner konfliktu z tytułami, godzinami i osobami — d1eb4a6
+- [x] 2.4 Kolidujące karty mają wizualne oznaczenie — d1eb4a6
+- [x] 2.5 Dwa car_needed events, ten sam dzień, brak overlap → brak banera — d1eb4a6
+- [x] 2.6 Touch point (A.end === B.start) → brak banera — d1eb4a6
+- [x] 2.7 Dwa events bez car_needed, overlap → brak banera — d1eb4a6
+- [x] 2.8 Wiele par → jeden baner per para — d1eb4a6
+- [x] 2.9 `/events?car_conflict=1` ręcznie → widoczny baner nawigacyjny — d1eb4a6
 
 ### Phase 3: API Routes — Car Conflict Signal on Save
 
 #### Automated
 
-- [ ] 3.1 `npm run lint` przechodzi bez błędów
-- [ ] 3.2 `npm run build` przechodzi bez błędów
+- [x] 3.1 `npm run lint` przechodzi bez błędów
+- [x] 3.2 `npm run build` przechodzi bez błędów
 
 #### Manual
 
-- [ ] 3.3 CREATE car_needed=true → baner nawigacyjny po redirectcie
-- [ ] 3.4 CREATE car_needed=false → brak bannera car_conflict
-- [ ] 3.5 EDIT → car_needed=true → baner nawigacyjny po redirectcie
-- [ ] 3.6 EDIT → car_needed=false → brak bannera car_conflict
-- [ ] 3.7 DELETE → żaden nowy baner
+- [x] 3.3 CREATE car_needed=true → baner nawigacyjny po redirectcie
+- [x] 3.4 CREATE car_needed=false → brak bannera car_conflict
+- [x] 3.5 EDIT → car_needed=true → baner nawigacyjny po redirectcie
+- [x] 3.6 EDIT → car_needed=false → brak bannera car_conflict
+- [x] 3.7 DELETE → żaden nowy baner

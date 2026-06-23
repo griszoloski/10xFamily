@@ -11,18 +11,14 @@ const newEventSchema = z.object({
   duration_minutes: z.coerce.number().int().min(10).max(1440),
   location: z.string().max(300).optional(),
   notes: z.string().max(2000).optional(),
-  car_needed: z
-    .preprocess((v) => v === "on" || v === "true" || v === true, z.boolean())
-    .default(false),
+  car_needed: z.preprocess((v) => v === "on" || v === "true" || v === true, z.boolean()).default(false),
   driver_id: z.preprocess((v) => (v === "" ? null : v), z.uuid().nullable().optional()),
 });
 
 export const POST: APIRoute = async (context) => {
   const supabase = createClient(context.request.headers, context.cookies);
   if (!supabase) {
-    return context.redirect(
-      `/events/new?error=${encodeURIComponent("Supabase not configured")}`,
-    );
+    return context.redirect(`/events/new?error=${encodeURIComponent("Supabase not configured")}`);
   }
 
   const formData = await context.request.formData();
@@ -40,9 +36,7 @@ export const POST: APIRoute = async (context) => {
 
   const householdId = await getHouseholdId(supabase);
   if (!householdId) {
-    return context.redirect(
-      `/events/new?error=${encodeURIComponent("No household found for this user")}`,
-    );
+    return context.redirect(`/events/new?error=${encodeURIComponent("No household found for this user")}`);
   }
 
   try {
@@ -57,5 +51,5 @@ export const POST: APIRoute = async (context) => {
     return context.redirect(`/events/new?error=${encodeURIComponent(message)}`);
   }
 
-  return context.redirect("/events?success=1");
+  return context.redirect(car_needed ? "/events?success=1&car_conflict=1" : "/events?success=1");
 };
