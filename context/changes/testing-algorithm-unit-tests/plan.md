@@ -242,26 +242,26 @@ No schema changes, no data migration, no API changes. The test file is additive.
 
 #### Automated
 
-- [x] 1.1 `npm install -D vitest` completes; `vitest` appears in `package.json` devDependencies
-- [x] 1.2 `npm run test -- --passWithNoTests` exits 0
-- [x] 1.3 `npm run lint` passes with no new errors
-- [x] 1.4 `npm run build` still passes
+- [x] 1.1 `npm install -D vitest` completes; `vitest` appears in `package.json` devDependencies — f4716e5
+- [x] 1.2 `npm run test -- --passWithNoTests` exits 0 — f4716e5
+- [x] 1.3 `npm run lint` passes with no new errors — f4716e5
+- [x] 1.4 `npm run build` still passes — f4716e5
 
 #### Manual
 
-- [x] 1.5 `npx vitest --version` prints a 3.x version
-- [x] 1.6 `npm run test -- --passWithNoTests` shows Vitest startup output (not "command not found")
+- [x] 1.5 `npx vitest --version` prints a 3.x version — f4716e5
+- [x] 1.6 `npm run test -- --passWithNoTests` shows Vitest startup output (not "command not found") — f4716e5
 
 ### Phase 2: Unit Tests for detectCarConflicts
 
 #### Automated
 
-- [ ] 2.1 `npm run test` exits 0 with 13 passing tests
-- [ ] 2.2 `npm run lint` passes with no new errors from the test file
-- [ ] 2.3 `npm run build` still passes
+- [x] 2.1 `npm run test` exits 0 with 13 passing tests
+- [x] 2.2 `npm run lint` passes with no new errors from the test file
+- [x] 2.3 `npm run build` still passes
 
 #### Manual
 
-- [ ] 2.4 Test output shows all 13 tests by name
-- [ ] 2.5 T6 name is visible in output confirming the PRD invariant (touching ≠ conflict) is documented in the suite
-- [ ] 2.6 No test is marked `todo` or `skip`
+- [x] 2.4 Test output shows all 13 tests by name
+- [x] 2.5 T6 name is visible in output confirming the PRD invariant (touching ≠ conflict) is documented in the suite
+- [x] 2.6 No test is marked `todo` or `skip`
