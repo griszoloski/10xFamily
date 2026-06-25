@@ -256,12 +256,12 @@ No schema changes, no data migration, no API changes. The test file is additive.
 
 #### Automated
 
-- [x] 2.1 `npm run test` exits 0 with 13 passing tests
-- [x] 2.2 `npm run lint` passes with no new errors from the test file
-- [x] 2.3 `npm run build` still passes
+- [x] 2.1 `npm run test` exits 0 with 13 passing tests — 700be1b
+- [x] 2.2 `npm run lint` passes with no new errors from the test file — 700be1b
+- [x] 2.3 `npm run build` still passes — 700be1b
 
 #### Manual
 
-- [x] 2.4 Test output shows all 13 tests by name
-- [x] 2.5 T6 name is visible in output confirming the PRD invariant (touching ≠ conflict) is documented in the suite
-- [x] 2.6 No test is marked `todo` or `skip`
+- [x] 2.4 Test output shows all 13 tests by name — 700be1b
+- [x] 2.5 T6 name is visible in output confirming the PRD invariant (touching ≠ conflict) is documented in the suite — 700be1b
+- [x] 2.6 No test is marked `todo` or `skip` — 700be1b
