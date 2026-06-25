@@ -242,15 +242,15 @@ No schema changes, no data migration, no API changes. The test file is additive.
 
 #### Automated
 
-- [ ] 1.1 `npm install -D vitest` completes; `vitest` appears in `package.json` devDependencies
-- [ ] 1.2 `npm run test -- --passWithNoTests` exits 0
-- [ ] 1.3 `npm run lint` passes with no new errors
-- [ ] 1.4 `npm run build` still passes
+- [x] 1.1 `npm install -D vitest` completes; `vitest` appears in `package.json` devDependencies
+- [x] 1.2 `npm run test -- --passWithNoTests` exits 0
+- [x] 1.3 `npm run lint` passes with no new errors
+- [x] 1.4 `npm run build` still passes
 
 #### Manual
 
-- [ ] 1.5 `npx vitest --version` prints a 3.x version
-- [ ] 1.6 `npm run test -- --passWithNoTests` shows Vitest startup output (not "command not found")
+- [x] 1.5 `npx vitest --version` prints a 3.x version
+- [x] 1.6 `npm run test -- --passWithNoTests` shows Vitest startup output (not "command not found")
 
 ### Phase 2: Unit Tests for detectCarConflicts
 

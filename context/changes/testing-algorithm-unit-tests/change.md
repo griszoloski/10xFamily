@@ -1,7 +1,7 @@
 ---
 change_id: testing-algorithm-unit-tests
 title: Bootstrap Vitest and unit-test the conflict-detection algorithm
-status: planned
+status: implementing
 created: 2026-06-25
 updated: 2026-06-25
 archived_at: null
