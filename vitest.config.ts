@@ -15,8 +15,8 @@ export default defineConfig({
     name: "unit",
     include: ["src/**/*.test.ts", "src/**/*.test.tsx"],
     environmentMatchGlobs: [
-      ["src/**/*.test.ts", "node"],
-      ["src/**/*.test.tsx", "jsdom"],
+      ["**/*.test.ts", "node"],
+      ["**/*.test.tsx", "jsdom"],
     ],
     setupFiles: ["src/test-setup.ts"],
   },

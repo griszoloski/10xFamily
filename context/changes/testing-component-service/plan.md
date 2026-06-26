@@ -316,12 +316,12 @@ No schema changes, no data migration, no API changes. All changes are additive t
 
 #### Automated
 
-- [x] 2.1 `npm run test` exits 0 with 16 passing tests
-- [x] 2.2 `npm run lint` passes
+- [x] 2.1 `npm run test` exits 0 with 16 passing tests — ad55a54
+- [x] 2.2 `npm run lint` passes — ad55a54
 
 #### Manual
 
-- [ ] 2.3 Test output shows all three R3 tests by name under `updateEvent — R3` describe heading
+- [x] 2.3 Test output shows all three R3 tests by name under `updateEvent — R3` describe heading — ad55a54
 
 ### Phase 3: Component Test — R4 EventForm
 
