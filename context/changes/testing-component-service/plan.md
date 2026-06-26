@@ -304,20 +304,20 @@ No schema changes, no data migration, no API changes. All changes are additive t
 
 #### Automated
 
-- [x] 1.1 All four packages appear in `package.json` devDependencies
-- [x] 1.2 `npm run test -- --passWithNoTests` exits 0 (13 tests still pass)
-- [x] 1.3 `npm run lint` passes
+- [x] 1.1 All four packages appear in `package.json` devDependencies — 8dddfa8
+- [x] 1.2 `npm run test -- --passWithNoTests` exits 0 (13 tests still pass) — 8dddfa8
+- [x] 1.3 `npm run lint` passes — 8dddfa8
 
 #### Manual
 
-- [ ] 1.4 `npx vitest --version` still prints 4.x
+- [x] 1.4 `npx vitest --version` still prints 4.x — 8dddfa8
 
 ### Phase 2: Service Test — R3 updateEvent
 
 #### Automated
 
-- [ ] 2.1 `npm run test` exits 0 with 16 passing tests
-- [ ] 2.2 `npm run lint` passes
+- [x] 2.1 `npm run test` exits 0 with 16 passing tests
+- [x] 2.2 `npm run lint` passes
 
 #### Manual
 

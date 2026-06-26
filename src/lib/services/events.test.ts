@@ -1,6 +1,7 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import type { EventWithProfiles } from "@/lib/services/events";
-import { detectCarConflicts } from "@/lib/services/events";
+import { detectCarConflicts, updateEvent } from "@/lib/services/events";
+import type { Event } from "@/types";
 
 function makeEvent(overrides: Partial<EventWithProfiles> = {}): EventWithProfiles {
   return {
@@ -21,6 +22,55 @@ function makeEvent(overrides: Partial<EventWithProfiles> = {}): EventWithProfile
     ...overrides,
   };
 }
+
+function makeSupabaseMock(returnVal: { data: Event | null; error: { message: string } | null }) {
+  const singleFn = vi.fn().mockResolvedValue(returnVal);
+  const selectFn = vi.fn().mockReturnValue({ single: singleFn });
+  const eqFn = vi.fn().mockReturnValue({ select: selectFn });
+  const updateFn = vi.fn().mockReturnValue({ eq: eqFn });
+  return { supabase: { from: vi.fn().mockReturnValue({ update: updateFn }) }, updateFn };
+}
+
+describe("updateEvent — R3: updated_at always stamped", () => {
+  const eventFixture: Event = {
+    id: "evt-1",
+    household_id: "hh-1",
+    subject_id: "sub-1",
+    driver_id: null,
+    title: "Test event",
+    starts_at: "2026-06-20T09:00:00",
+    duration_minutes: 60,
+    location: null,
+    notes: null,
+    car_needed: false,
+    created_at: "2026-06-20T00:00:00.000Z",
+    updated_at: "2026-06-20T00:00:00.000Z",
+  };
+
+  it("T14: includes updated_at in every UPDATE payload", async () => {
+    const { supabase, updateFn } = makeSupabaseMock({ data: eventFixture, error: null });
+    await updateEvent(supabase as never, "evt-1", { title: "X" });
+    const capturedPayload = updateFn.mock.calls[0][0] as Record<string, unknown>;
+    expect(capturedPayload.updated_at).toBeDefined();
+    expect(typeof capturedPayload.updated_at).toBe("string");
+    expect((capturedPayload.updated_at as string).length).toBeGreaterThan(0);
+  });
+
+  it("T15: updated_at is an ISO string close to now()", async () => {
+    const before = Date.now();
+    const { supabase, updateFn } = makeSupabaseMock({ data: eventFixture, error: null });
+    await updateEvent(supabase as never, "evt-1", { title: "X" });
+    const capturedPayload = updateFn.mock.calls[0][0] as Record<string, unknown>;
+    const ts = new Date(capturedPayload.updated_at as string).getTime();
+    expect(ts).toBeGreaterThanOrEqual(before);
+    expect(ts).toBeLessThanOrEqual(Date.now() + 100);
+  });
+
+  it("T16: throws when Supabase returns an error", async () => {
+    const { supabase } = makeSupabaseMock({ data: null, error: { message: "DB error" } });
+    await expect(updateEvent(supabase as never, "evt-1", { title: "X" })).rejects.toThrow("DB error");
+  });
+});
 
 describe("detectCarConflicts", () => {
   describe("baseline", () => {
