@@ -122,7 +122,24 @@ export async function getEvent(supabase: SupabaseClient, eventId: string): Promi
   return data;
 }
 
+export async function listHouseholdProfiles(
+  supabase: SupabaseClient,
+): Promise<Pick<HouseholdMemberProfile, "id" | "display_name" | "kind">[]> {
+  const { data, error } = await supabase
+    .from("household_members_profiles")
+    .select("id, display_name, kind")
+    .order("display_name");
+
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data;
+}
+
+// Authorization: ownership enforced by RLS policy `events_update_own` (supabase/migrations/20260610112151_household_events_foundation.sql).
+// The Supabase client is initialized with the user's session cookies, so RLS filters cross-household rows automatically.
 export async function updateEvent(supabase: SupabaseClient, eventId: string, update: EventUpdate): Promise<Event> {
+  // updated_at has no DB trigger — must be set manually on every UPDATE (see plan.md Key Discoveries).
   const payload = {
     ...update,
     updated_at: new Date().toISOString(),
@@ -140,10 +157,15 @@ export async function updateEvent(supabase: SupabaseClient, eventId: string, upd
   return data;
 }
 
+// Authorization: ownership enforced by RLS policy `events_delete_own` (supabase/migrations/20260610112151_household_events_foundation.sql).
+// The Supabase client is initialized with the user's session cookies, so RLS filters cross-household rows automatically.
 export async function deleteEvent(supabase: SupabaseClient, eventId: string): Promise<void> {
-  const { error } = await supabase.from("events").delete().eq("id", eventId);
+  const { data, error } = await supabase.from("events").delete().eq("id", eventId).select("id");
 
   if (error) {
     throw new Error(error.message);
+  }
+  if (data.length === 0) {
+    throw new Error("Event not found or already deleted");
   }
 }

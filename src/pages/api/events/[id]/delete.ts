@@ -1,9 +1,14 @@
 import type { APIRoute } from "astro";
+import { z } from "zod";
 import { createClient } from "@/lib/supabase";
 import { deleteEvent } from "@/lib/services/events";
 
 export const POST: APIRoute = async (context) => {
-  const eventId = context.params.id ?? "";
+  const idParsed = z.uuid().safeParse(context.params.id);
+  if (!idParsed.success) {
+    return new Response("Not Found", { status: 404 });
+  }
+  const eventId = idParsed.data;
 
   const supabase = createClient(context.request.headers, context.cookies);
   if (!supabase) {

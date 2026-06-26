@@ -4,9 +4,16 @@ import { createClient } from "@/lib/supabase";
 import { listEventsByDateRange, detectCarConflicts } from "@/lib/services/events";
 import type { EventWithProfiles } from "@/lib/services/events";
 
-const todayStr = new Date().toISOString().slice(0, 10);
-const windowEndDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-const windowEndStr = windowEndDate.toISOString().slice(0, 10);
+// Use Europe/Warsaw locale to derive the calendar date — toISOString() is UTC-anchored
+// and would give yesterday's date between 00:00–02:00 CET for a UTC+2 household.
+const toWarsawDate = (d: Date) =>
+  d
+    .toLocaleDateString("pl-PL", { timeZone: "Europe/Warsaw", year: "numeric", month: "2-digit", day: "2-digit" })
+    .split(".")
+    .reverse()
+    .join("-");
+const todayStr = toWarsawDate(new Date());
+const windowEndStr = toWarsawDate(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
 
 const supabase = createClient(Astro.request.headers, Astro.cookies);
 const windowEvents = supabase
@@ -96,6 +103,7 @@ const fmtDayHeader = (isoDate: string) => {
                     <span>Osoba: {event.subject.display_name}</span>
                     <span>{event.duration_minutes} min</span>
                     {event.car_needed && <span>Auto: {event.driver ? event.driver.display_name : "potrzebne"}</span>}
+                    {event.location && <span>Lokalizacja: {event.location}</span>}
                   </div>
                   <div class="mt-2">
                     <a href={`/events/${event.id}/edit`} class="text-xs text-blue-100/50 hover:text-blue-100/80">
@@ -135,6 +143,7 @@ const fmtDayHeader = (isoDate: string) => {
                           {event.car_needed && (
                             <span>Auto: {event.driver ? event.driver.display_name : "potrzebne"}</span>
                           )}
+                          {event.location && <span>Lokalizacja: {event.location}</span>}
                         </div>
                         <div class="mt-2">
                           <a href={`/events/${event.id}/edit`} class="text-xs text-blue-100/50 hover:text-blue-100/80">
