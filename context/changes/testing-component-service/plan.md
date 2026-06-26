@@ -327,11 +327,11 @@ No schema changes, no data migration, no API changes. All changes are additive t
 
 #### Automated
 
-- [ ] 3.1 `npm run test` exits 0 with 24 passing tests
-- [ ] 3.2 `npm run lint` passes
+- [x] 3.1 `npm run test` exits 0 with 24 passing tests — e1b67db
+- [x] 3.2 `npm run lint` passes — e1b67db
 
 #### Manual
 
-- [ ] 3.3 Test output shows all 8 R4 tests by name
-- [ ] 3.4 No test is marked `todo` or `skip`
-- [ ] 3.5 `npm run test` output explicitly lists `src/components/events/EventForm.test.tsx`
+- [x] 3.3 Test output shows all 8 R4 tests by name — e1b67db
+- [x] 3.4 No test is marked `todo` or `skip` — e1b67db
+- [x] 3.5 `npm run test` output explicitly lists `src/components/events/EventForm.test.tsx` — e1b67db
