@@ -1,9 +1,9 @@
 {
   "package": "@przeprogramowani/10x-cli",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "manifestVersion": 3,
-  "lastApplied": "2026-06-23T07:38:54.517Z",
-  "lessonId": "m5l5",
+  "lastApplied": "2026-06-29T05:59:53.771Z",
+  "lessonId": "m0l0",
   "course": "10xdevs3",
   "tool": "cursor",
   "files": {
@@ -330,7 +330,8 @@
       "m5l4-github-packages-spec-pack.md",
       "m5l4-github-packages-spec-cicd.md",
       "m5l4-codeartifact-spec-cicd.md",
-      "m5l4-codeartifact-spec-terraform.md"
+      "m5l4-codeartifact-spec-terraform.md",
+      "mvp-check.md"
     ],
     "configs": [
       "m5l4-github-packages-package.json.template",
@@ -368,7 +369,8 @@
       "m5l4-github-packages-spec-pack.md": "517f113a71353d39227005d8bc2c727107ef2cccab12648f687b6d0f9810343c",
       "m5l4-github-packages-spec-cicd.md": "a23b267d6fe67867ed94637afe0ebb6692051225da32f2e54f6bbbbd19bbef21",
       "m5l4-codeartifact-spec-cicd.md": "92dd433c6ff212428c4447459a3142f9322b6a7c13ac5537cb4ae5637ea038e4",
-      "m5l4-codeartifact-spec-terraform.md": "5f550ee36d16e4edf37d3c87b4c421650b8f59136b7e67129214daf2d1e1e27f"
+      "m5l4-codeartifact-spec-terraform.md": "5f550ee36d16e4edf37d3c87b4c421650b8f59136b7e67129214daf2d1e1e27f",
+      "mvp-check.md": "9f8795c523f2167b2d95bfddd6f8dbd3a144a473ba79cbeaaa48d195b5c59d3d"
     }
   },
   "lessons": {
@@ -2143,6 +2145,15 @@
       "prompts": [],
       "configs": [],
       "catalogContentHash": "e50b3d7c4300eed85737ea47bbac4a91aac173e7dc28ef29b34d3abdf01f4373"
+    },
+    "m0l0": {
+      "appliedAt": "2026-06-29T05:59:53.771Z",
+      "skills": {},
+      "prompts": [
+        "skill-explainer.md",
+        "mvp-check.md"
+      ],
+      "configs": []
     }
   }
 }

@@ -1,179 +1,155 @@
-# 10x Astro Starter
+# 10xFamily Schedule Hub
 
-![](./public/template.png)
+Aplikacja webowa do zarządzania harmonogramem rodziny z automatyczną detekcją konfliktów zasobu (samochód). Pozwala rodzicom planować wydarzenia dzieci i dorosłych, oznaczać które wymagają auta, i natychmiast widzieć, gdy dwa zdarzenia nakładają się czasowo — zanim konflikt wystąpi w rzeczywistości.
 
-A modern, opinionated starter template for building fast, accessible web applications.
+## Główne funkcje
+
+- **Dashboard "Dziś"** — przegląd dzisiejszych wydarzeń, informacja kto potrzebuje auta, alerty o konfliktach
+- **Zarządzanie wydarzeniami** — tworzenie, edytowanie i usuwanie wydarzeń z polami: tytuł, osoba/dziecko, data, godzina, czas trwania, lokalizacja, notatki, flaga „auto potrzebne", kto jedzie
+- **Detekcja konfliktów** — automatyczne wykrywanie par wydarzeń z flagą „auto potrzebne", które nakładają się czasowo tego samego dnia
+- **Izolacja danych** — każdy household widzi wyłącznie swoje dane; Row Level Security w Supabase egzekwuje izolację na poziomie bazy danych
 
 ## Tech Stack
 
-- [Astro](https://astro.build/) v6 - Modern web framework with server-first rendering
-- [React](https://react.dev/) v19 - UI library for interactive components
-- [TypeScript](https://www.typescriptlang.org/) v5 - Type-safe JavaScript
-- [Tailwind CSS](https://tailwindcss.com/) v4 - Utility-first CSS framework
-- [Supabase](https://supabase.com/) - Authentication and backend-as-a-service
-- [Cloudflare Workers](https://workers.cloudflare.com/) - Edge deployment runtime
+- [Astro](https://astro.build/) v6 — SSR, routing oparty o pliki
+- [React](https://react.dev/) v19 — interaktywne wyspy (formularze, przyciski)
+- [TypeScript](https://www.typescriptlang.org/) v5 — pełne typowanie
+- [Tailwind CSS](https://tailwindcss.com/) v4 — utility-first CSS
+- [Supabase](https://supabase.com/) — autentykacja (e-mail + hasło) i baza danych PostgreSQL z RLS
+- [Cloudflare Workers](https://workers.cloudflare.com/) — edge deployment
 
-## Prerequisites
+## Wymagania
 
-- Node.js v22.14.0 (as specified in `.nvmrc`)
-- npm (comes with Node.js)
+- Node.js v22.14.0 (patrz `.nvmrc`)
+- npm (dołączony do Node.js)
+- Docker (do lokalnego Supabase, ~7 GB RAM)
 
-## Getting Started
+## Uruchomienie lokalne
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/przeprogramowani/10x-astro-starter.git
-cd 10x-astro-starter
-```
-
-2. Install dependencies:
+1. Zainstaluj zależności:
 
 ```bash
 npm install
 ```
 
-3. Set up Supabase and configure environment variables — see [Supabase Configuration](#supabase-configuration) below.
-
-4. Create a `.dev.vars` file for local Cloudflare dev secrets:
+2. Skopiuj plik zmiennych środowiskowych:
 
 ```bash
 cp .env.example .dev.vars
 ```
 
-5. Run the development server:
-
-```bash
-npm run dev
-```
-
-## Available Scripts
-
-- `npm run dev` - Start development server (Cloudflare workerd runtime)
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint with type-checked rules
-- `npm run lint:fix` - Auto-fix ESLint issues
-- `npm run format` - Run Prettier
-
-## Project Structure
-
-```md
-.
-├── src/
-│ ├── layouts/ # Astro layouts
-│ ├── pages/ # Astro pages
-│ │ └── api/ # API endpoints
-│ ├── components/ # UI components (Astro & React)
-│ └── assets/ # Static assets
-├── public/ # Public assets
-├── wrangler.jsonc # Cloudflare Workers config
-```
-
-## Supabase Configuration
-
-This project uses [Supabase](https://supabase.com/) for authentication. Environment variables are declared via Astro's `astro:env` schema and are treated as **server-only secrets** — they are never exposed to the client.
-
-### First-time setup (local, no cloud project needed)
-
-Requires [Docker](https://www.docker.com/) and ~7 GB RAM.
-
-1. Create your `.env` file:
-
-```bash
-cp .env.example .env
-```
-
-2. Initialize the local Supabase project (creates a `supabase/` config folder):
-
-```bash
-npx supabase init
-```
-
-3. Start the local stack (downloads Docker images on first run):
+3. Uruchom lokalny stack Supabase (pierwsze uruchomienie pobiera obrazy Docker):
 
 ```bash
 npx supabase start
 ```
 
-4. Copy the credentials printed by the CLI into your `.env` and `.dev.vars`:
+4. Skopiuj dane wydrukowane przez CLI do `.dev.vars`:
 
 ```
 SUPABASE_URL=http://127.0.0.1:54321
 SUPABASE_KEY=<anon key from CLI output>
 ```
 
-5. To stop the stack when done:
+5. Zastosuj migracje bazy danych:
 
 ```bash
-npx supabase stop
+npx supabase db push
 ```
 
-The local Studio UI is available at `http://localhost:54323`.
+6. Uruchom serwer deweloperski:
 
-No database tables or migrations are required — this project uses Supabase Auth's built-in `auth.users` table only.
-
-### Using a cloud Supabase project instead
-
-If you prefer to use a hosted Supabase project, add these variables to your `.env` and `.dev.vars` files:
-
-| Variable       | Description                                                |
-| -------------- | ---------------------------------------------------------- |
-| `SUPABASE_URL` | Project URL from Supabase dashboard → Settings → API       |
-| `SUPABASE_KEY` | `anon` public key from Supabase dashboard → Settings → API |
-
-```
-SUPABASE_URL=https://<project-ref>.supabase.co
-SUPABASE_KEY=<anon-key>
+```bash
+npm run dev
 ```
 
-### Email confirmation in local development
+Aplikacja dostępna pod `http://localhost:4321`. Supabase Studio pod `http://localhost:54323`.
 
-By default Supabase requires email confirmation before a user can sign in. To skip this during local development:
+> **Email confirmation w lokalnym dev**: wejdź w Supabase Studio → Authentication → Email → wyłącz „Confirm email", żeby logować się bez klikania w link.
 
-1. Open the Supabase dashboard for your project
-2. Go to **Authentication → Email → Confirm email**
-3. Toggle it **off**
+## Konfiguracja cloud Supabase (alternatywnie)
 
-Users can then sign in immediately after sign-up without clicking a confirmation link.
+Jeśli zamiast lokalnego stacku wolisz projekt hostowany na [supabase.com](https://supabase.com):
 
-### Auth routes
+| Zmienna | Opis |
+|---|---|
+| `SUPABASE_URL` | Project URL z Supabase dashboard → Settings → API |
+| `SUPABASE_KEY` | Klucz `anon` z Supabase dashboard → Settings → API |
 
-| Route                 | Description                                                             |
-| --------------------- | ----------------------------------------------------------------------- |
-| `/auth/signin`        | Email/password sign-in form                                             |
-| `/auth/signup`        | Email/password sign-up form                                             |
-| `/auth/confirm-email` | Post-signup "check your inbox" page                                     |
-| `/dashboard`          | Example protected page (redirects to `/auth/signin` if unauthenticated) |
+Ustaw te wartości w `.dev.vars` (lokalne Cloudflare dev) lub `.env` (Node.js).
 
-Route protection is handled in `src/middleware.ts`. Add paths to the `PROTECTED_ROUTES` array there to require authentication.
+## Dostępne skrypty
+
+| Komenda | Opis |
+|---|---|
+| `npm run dev` | Serwer deweloperski (Cloudflare workerd runtime) |
+| `npm run build` | Build produkcyjny |
+| `npm run preview` | Podgląd buildu produkcyjnego |
+| `npm run lint` | ESLint z regułami type-checked |
+| `npm run lint:fix` | Auto-naprawa błędów ESLint |
+| `npm run format` | Prettier |
+| `npx vitest` | Testy jednostkowe i komponentowe |
+
+## Struktura projektu
+
+```
+src/
+├── pages/
+│   ├── index.astro          # Strona główna (landing)
+│   ├── dashboard.astro      # Dashboard "Dziś" z konfliktami
+│   ├── events/              # Lista, nowe wydarzenie, edycja
+│   └── api/
+│       ├── auth/            # signin, signup, signout
+│       └── events/          # CRUD endpointy
+├── components/
+│   ├── events/              # EventForm, DeleteEventButton
+│   └── ui/                  # shadcn/ui komponenty
+├── lib/
+│   ├── services/
+│   │   └── events.ts        # CRUD + detectCarConflicts()
+│   └── supabase.ts          # Klient Supabase SSR
+├── middleware.ts             # Autentykacja + ochrona tras
+└── types.ts                 # Typy domenowe
+supabase/
+└── migrations/              # SQL migracje z RLS
+context/
+└── foundation/              # PRD, roadmap, test-plan i inne dokumenty fundacyjne
+```
+
+## Trasy aplikacji
+
+| Trasa | Opis |
+|---|---|
+| `/auth/signin` | Logowanie (e-mail + hasło) |
+| `/auth/signup` | Rejestracja |
+| `/auth/confirm-email` | Strona po rejestracji |
+| `/dashboard` | Dashboard "Dziś" — chroniony |
+| `/events` | Lista wszystkich wydarzeń — chroniona |
+| `/events/new` | Formularz nowego wydarzenia — chroniony |
+| `/events/[id]/edit` | Edycja wydarzenia — chroniony |
 
 ## Deployment
 
-This project deploys to [Cloudflare Workers](https://workers.cloudflare.com/).
+Projekt deployuje się na Cloudflare Workers.
 
-1. Build the project:
+1. Zbuduj projekt:
 
 ```bash
 npm run build
 ```
 
-2. Deploy with Wrangler:
+2. Wdróż przez Wrangler:
 
 ```bash
 npx wrangler deploy
 ```
 
-Set `SUPABASE_URL` and `SUPABASE_KEY` as secrets in your Cloudflare dashboard or via `npx wrangler secret put`.
+Ustaw `SUPABASE_URL` i `SUPABASE_KEY` jako sekrety w Cloudflare dashboard lub przez `npx wrangler secret put`.
 
 ## CI
 
-GitHub Actions runs lint + build on every push and PR to `master`. Configure `SUPABASE_URL` and `SUPABASE_KEY` as repository secrets in GitHub for the build step.
+GitHub Actions uruchamia lint + build przy każdym push i PR do `master`. Wymaga sekretów repozytorium `SUPABASE_URL` i `SUPABASE_KEY` dla kroku build.
 
-## License
+## Licencja
 
 MIT
-
-## NOTES
-
-Empty
