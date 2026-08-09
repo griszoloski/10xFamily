@@ -1,0 +1,22 @@
+---
+description: E2E testing rules for Playwright tests in this project. Applied automatically when generating or reviewing *.spec.ts files in tests/e2e/.
+globs: tests/e2e/**/*.spec.ts
+---
+# E2E Testing Rules
+
+- Use `getByRole`, `getByLabel`, `getByText` as primary locators.
+  Fall back to `getByTestId` only when accessibility attributes are ambiguous.
+- Never use CSS selectors, XPath, or DOM structure for locating elements.
+- Each test must be independently runnable — no shared state between tests.
+- Never use `page.waitForTimeout()`. Wait for specific conditions:
+  `toBeVisible()`, `waitForURL()`, `waitForResponse()`.
+- Assert the business outcome, not implementation details.
+- Use unique identifiers (e.g. `Date.now()` suffix) for test data
+  to avoid collisions in parallel runs or re-runs. Clean up in a `finally` block.
+- Use `storageState` for authentication — never log in through the UI
+  in individual tests (that is the job of `auth.setup.ts`).
+- Name every test after the risk it protects, not after the UI it touches.
+  Good: `'conflict alert fires when two car-flagged events overlap'`
+  Bad:  `'test dashboard'` / `'test 1'`
+- One test file per risk. Place specs in `tests/e2e/<feature>.spec.ts`.
+- The seed exemplar lives in `tests/e2e/seed.spec.ts` — model new tests on it.
