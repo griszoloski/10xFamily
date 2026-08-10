@@ -23,11 +23,7 @@ const today = new Date().toISOString().slice(0, 10);
  * Fills the EventForm and submits it.
  * Returns after the redirect to /events has completed.
  */
-async function fillAndSubmitEvent(
-  page: import("@playwright/test").Page,
-  title: string,
-  time: string,
-): Promise<void> {
+async function fillAndSubmitEvent(page: import("@playwright/test").Page, title: string, time: string): Promise<void> {
   await page.goto("/events/new");
 
   await page.getByLabel("Tytuł *").fill(title);
@@ -52,10 +48,7 @@ async function fillAndSubmitEvent(
  * Finds the event card on the /events list by its unique title and returns
  * the event UUID extracted from the "Edytuj" link href.
  */
-async function getEventIdByTitle(
-  page: import("@playwright/test").Page,
-  title: string,
-): Promise<string | null> {
+async function getEventIdByTitle(page: import("@playwright/test").Page, title: string): Promise<string | null> {
   // The events list renders each event in a <li>; find by the unique title text
   const card = page.locator("li").filter({ hasText: title });
   const href = await card.getByRole("link", { name: "Edytuj" }).getAttribute("href");
